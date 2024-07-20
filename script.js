@@ -60,9 +60,17 @@ function playRound(humanChoice,computerChoice)
     
 
 }
+function playGame()
+{
+    for(i=0;i<5;i++)
+    {
+        humanChoice=getHumanChoice()
+        computerChoice=getComputerChoice()
+        playRound(humanChoice,computerChoice)
+        alert(`Your score: ${humanScore} \n Computer score: ${computerScore}`)
+    }
+}
 let humanScore=0
 let computerScore=0
-humanChoice=getHumanChoice()
-computerChoice=getComputerChoice()
-playRound(humanChoice,computerChoice)
-alert(`Your score: ${humanScore} \n Computer score: ${computerScore}`)
+playGame()
+

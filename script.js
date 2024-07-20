@@ -60,6 +60,15 @@ function playRound(humanChoice,computerChoice)
     
 
 }
+function getWinner()
+{
+    if (computerScore > humanScore)
+        alert("Computer wins the game!")
+    else if(computerScore < humanScore)
+        alert("You win the game!")
+    else
+     alert("Draw,no winner!")
+}
 function playGame()
 {
     for(i=0;i<5;i++)
@@ -69,6 +78,7 @@ function playGame()
         playRound(humanChoice,computerChoice)
         alert(`Your score: ${humanScore} \n Computer score: ${computerScore}`)
     }
+    getWinner()
 }
 let humanScore=0
 let computerScore=0

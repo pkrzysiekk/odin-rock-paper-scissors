@@ -10,19 +10,15 @@ function getComputerChoice()
     const ComputerChoices=['rock','paper','scissors']
     return ComputerChoices[getRandomInt(3)]
 }
-function getHumanChoice()
-{   const choices=['rock','paper','scissors']
-    humanChoice=prompt("Hello! You are about to play rock paper scissors against the computer,what's your choice?")
-    humanChoice=humanChoice.toLowerCase()
-    if(choices.indexOf(humanChoice)===-1)
-    {
-        alert("Wrong choice!")
-    }
-    else
-    return humanChoice  
-}
+
 function playRound(humanChoice,computerChoice)
 {
+    roundCount++
+    if(roundCount>5)
+    {
+        getWinner()
+
+    }
     if(humanChoice===computerChoice)
     {       
         alert("Draw!")
@@ -57,7 +53,15 @@ function playRound(humanChoice,computerChoice)
         alert("You win!")
         humanScore++
     }
+    updateResult()
     
+
+}
+function updateResult()
+{
+    resultText=`Your score: ${humanScore} \n Computer score: ${computerScore}`
+    resultParagraph.textContent=resultText
+    resultDiv.appendChild(resultParagraph)
 
 }
 function getWinner()
@@ -69,18 +73,25 @@ function getWinner()
     else
      alert("Draw,no winner!")
 }
-function playGame()
-{
-    for(i=0;i<5;i++)
-    {
-        humanChoice=getHumanChoice()
-        computerChoice=getComputerChoice()
-        playRound(humanChoice,computerChoice)
-        alert(`Your score: ${humanScore} \n Computer score: ${computerScore}`)
-    }
-    getWinner()
-}
+
 let humanScore=0
 let computerScore=0
-playGame()
+let roundCount=0
+
+const rockButton=document.querySelector("#rock")
+const paperButton=document.querySelector("#paper")
+const scissorsButton=document.querySelector("#scissors")
+const resultDiv=document.querySelector("#result")
+const resultParagraph=document.createElement("p")
+
+rockButton.addEventListener("click", function (){
+    playRound("rock",getComputerChoice());
+})
+paperButton.addEventListener("click", function (){
+    playRound("paper",getComputerChoice());
+})
+scissorsButton.addEventListener("click", function (){
+    playRound("scissors",getComputerChoice());
+})
+
 

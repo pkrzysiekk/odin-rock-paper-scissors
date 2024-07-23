@@ -17,6 +17,7 @@ function playRound(humanChoice,computerChoice)
     if(roundCount>5)
     {
         getWinner()
+        return
 
     }
     if(humanChoice===computerChoice)
@@ -66,12 +67,15 @@ function updateResult()
 }
 function getWinner()
 {
+    let winnerText=''
     if (computerScore > humanScore)
-        alert("Computer wins the game!")
+        winnerText="Computer wins the game!"
     else if(computerScore < humanScore)
-        alert("You win the game!")
+       winnerText="You win the game!"
     else
-     alert("Draw,no winner!")
+     winnerText="Draw,no winner!"
+    resultWinner.textContent=winnerText
+    resultParagraph.appendChild(resultWinner)
 }
 
 let humanScore=0
@@ -83,6 +87,7 @@ const paperButton=document.querySelector("#paper")
 const scissorsButton=document.querySelector("#scissors")
 const resultDiv=document.querySelector("#result")
 const resultParagraph=document.createElement("p")
+const resultWinner=document.createElement("p")
 
 rockButton.addEventListener("click", function (){
     playRound("rock",getComputerChoice());
